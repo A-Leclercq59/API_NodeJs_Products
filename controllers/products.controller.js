@@ -53,4 +53,14 @@ module.exports = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  getAllProducts: async function (req, res) {
+    try {
+      const allProducts = await db.product.findMany();
+
+      res.status(200).json(allProducts);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
