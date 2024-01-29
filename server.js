@@ -19,6 +19,6 @@ server.get("/", function (req, res) {
 server.use("/api/", apiRouter);
 
 // Launch server
-server.listen(8080, function () {
+server.listen(3000, function () {
   console.log("Server en écoute");
 });
