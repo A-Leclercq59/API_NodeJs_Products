@@ -63,4 +63,24 @@ module.exports = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  getProductById: async function (req, res) {
+    try {
+      var productId = parseInt(req.params.productId);
+
+      const product = await db.product.findUnique({
+        where: {
+          id: productId,
+        },
+      });
+
+      if (product) {
+        res.status(200).json(product);
+      } else {
+        res.status(404).json({ message: "Product not found!" });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };

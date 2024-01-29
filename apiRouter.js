@@ -7,6 +7,7 @@ exports.router = (function () {
 
   apiRouter.route("/products").post(productController.createProduct);
   apiRouter.route("/products").get(productController.getAllProducts);
+  apiRouter.route("/products/:productId").get(productController.getProductById);
 
   return apiRouter;
 })();
