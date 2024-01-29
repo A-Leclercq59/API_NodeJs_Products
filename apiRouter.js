@@ -11,6 +11,9 @@ exports.router = (function () {
   apiRouter
     .route("/products/:productId")
     .patch(productController.updateProductById);
+  apiRouter
+    .route("/products/:productId")
+    .delete(productController.deleteProduct);
 
   return apiRouter;
 })();

@@ -149,4 +149,34 @@ module.exports = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  deleteProduct: async function (req, res) {
+    try {
+      var productId = parseInt(req.params.productId);
+
+      const product = await db.product.findUnique({
+        where: {
+          id: productId,
+        },
+      });
+
+      if (!product) {
+        return res.status(404).json({ message: "Product not found!" });
+      }
+
+      const deletedProduct = await db.product.delete({
+        where: {
+          id: productId,
+        },
+      });
+
+      if (!deletedProduct) {
+        return res.status(500).json({ message: "Product cannot deleted!" });
+      }
+
+      return res.status(201).json({ message: "Product deleted" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  },
 };
